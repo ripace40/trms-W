@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>My GitHub Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 700px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c5cff, #3f80ff);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 16px 28px;
+            border-radius: 14px;
+            box-shadow: 0 12px 24px rgba(124, 92, 255, 0.35);
+            transition: 0.2s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(124, 92, 255, 0.42);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World! My site is officially live.</h1>
+    <div class="container">
+        <h1>Hello, World! My site is officially live.</h1>
+        <a class="cta" href="https://www.xbox.com/en-US/play" target="_blank">
+            Play Xbox Cloud Gaming
+        </a>
+    </div>
 </body>
 </html>
