@@ -1,56 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My GitHub Website</title>
-    <br/>
-    <h1 href="www.asaiscool.com">t</h1>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b1020;
-            color: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+      :root {
+        --bg-1: #0b1020;
+        --bg-2: #121a2d;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel-border: rgba(255, 255, 255, 0.12);
+        --text: #f4f4f4;
+        --muted: #dfe7ff;
+        --primary-1: #7c5cff;
+        --primary-2: #3f80ff;
+        --shadow: rgba(0, 0, 0, 0.25);
+      }
+
+      body.light {
+        --bg-1: #f2f6ff;
+        --bg-2: #dfeaff;
+        --panel: rgba(255, 255, 255, 0.7);
+        --panel-border: rgba(18, 26, 45, 0.08);
+        --text: #111827;
+        --muted: #4b5563;
+        --primary-1: #6d5ef8;
+        --primary-2: #2c7df7;
+        --shadow: rgba(98, 120, 190, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: var(--text);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .page {
+        width: min(900px, 90vw);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 28px var(--shadow);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
+        color: white;
+        font-size: 1.2rem;
+        box-shadow: 0 10px 20px rgba(124, 92, 255, 0.35);
+      }
+
+      .theme-toggle {
+        border: 1px solid var(--panel-border);
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-1px);
+      }
+
+      .container {
+        padding: 42px 32px;
+        border-radius: 22px;
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        box-shadow: 0 20px 50px var(--shadow);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+
+      p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .cta-row {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .cta {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 12px 24px;
+        border-radius: 14px;
+        box-shadow: 0 12px 24px rgba(124, 92, 255, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(124, 92, 255, 0.45);
+      }
+
+      @media (max-width: 600px) {
+        .topbar {
+          padding: 12px 14px;
+        }
+
+        .brand {
+          font-size: 0.95rem;
         }
 
         .container {
-            max-width: 800px;
-            padding: 10px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+          padding: 32px 20px;
         }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        .cta {
-            display: inline-block;
-            background: linear-gradient(135deg, #7c5cff, #3f80ff);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 14px;
-            box-shadow: 0 12px 24px rgba(124, 92, 255, 0.35);
-            transition: 0.2s ease;
-            margin-top: 10px;
-        }
-
-    
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">R</div>
+          <span>Ripace40</span>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light mode">
+          🌙 Dark
+        </button>
+      </header>
+
+      <main class="container">
         <h1>Hello, World! My site is officially live.</h1>
-       
+        <p>Welcome to my page — everything is set and ready to go.</p>
+
+        <div class="cta-row">
+          <a class="cta" href="https://ripace40.github.io/b/" target="_blank" rel="noreferrer">
+            Visit My Link
+          </a>
+        </div>
+      </main>
     </div>
-</body>
+
+    <script>
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        body.classList.add("light");
+        toggle.textContent = "☀️ Light";
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("light");
+        const isLight = body.classList.contains("light");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        toggle.textContent = isLight ? "☀️ Light" : "🌙 Dark";
+      });
+    </script>
+  </body>
 </html>
