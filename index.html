@@ -447,7 +447,7 @@
           <div class="panel ai-panel">
             <div class="ai-header">
               <div class="ai-title">Homemade AI</div>
-              <div class="ai-badge">Math • Literacy • Science</div>
+              <div class="ai-badge">Local assistant</div>
             </div>
 
             <div class="ai-controls">
@@ -455,13 +455,13 @@
                 id="aiInput"
                 class="ai-input"
                 type="text"
-                placeholder="Ask me something like: 12 + 8, define photosynthesis, or explain a sentence..."
+                placeholder="Ask me something like: hello, games, coding, GitHub..."
               />
               <button id="askAi" class="ai-button">Ask AI</button>
             </div>
 
             <div id="aiOutput" class="ai-output">
-              Type a question and I’ll answer it like a simple school helper.
+              Type a message and I’ll respond like a simple local AI helper.
             </div>
           </div>
         </div>
@@ -502,7 +502,6 @@
 
       toggle.addEventListener("click", () => {
         body.classList.toggle("light");
-
         const isLight = body.classList.contains("light");
         localStorage.setItem("theme", isLight ? "light" : "dark");
         toggle.textContent = isLight ? "☀️ Light" : "🌙 Dark";
@@ -513,154 +512,53 @@
       const askAi = document.getElementById("askAi");
       const aiOutput = document.getElementById("aiOutput");
 
-      function safeEvalMathExpression(expr) {
-        const sanitized = expr.replace(/[^0-9+\-*/().%\\s]/g, "");
-        if (!sanitized.trim()) return null;
-        try {
-          return Function(`"use strict"; return (${sanitized});`)();
-        } catch {
-          return null;
-        }
-      }
-
       function getAiReply(message) {
-        const text = message.trim();
+        const text = message.toLowerCase();
 
-        if (!text) {
-          return "Please ask me a question about math, literacy, or science.";
+        if (!text.trim()) {
+          return "Please ask me something so I can respond.";
         }
 
-        const lower = text.toLowerCase();
-
-        // Math
-        if (
-          /(\d+.*[+\-*/%].*\d+|\badd\b|\bsubtract\b|\bmultiply\b|\bdivide\b|\bmath\b|\bcalculate\b|\bsolve\b)/.test(lower)
-        ) {
-          const match = lower.match(/(-?\d+(\.\d+)?\s*[-+*/%]\s*-?\d+(\.\d+)?)/);
-          if (match) {
-            const expr = match[0].replace(/\s+/g, "");
-            const result = safeEvalMathExpression(expr);
-            if (result !== null && Number.isFinite(result)) {
-              return `Math answer: ${expr} = ${result}.`;
-            }
-          }
-
-          if (lower.includes("12 + 8") || lower.includes("12+8")) {
-            return "Math answer: 12 + 8 = 20.";
-          }
-
-          if (lower.includes("9 * 7") || lower.includes("9*7")) {
-            return "Math answer: 9 × 7 = 63.";
-          }
-
-          if (lower.includes("square root of 81") || lower.includes("sqrt 81")) {
-            return "Math answer: √81 = 9.";
-          }
-
-          if (lower.includes("area of a rectangle") || lower.includes("rectangle area")) {
-            return "Area of a rectangle = length × width. Example: 5 × 4 = 20 square units.";
-          }
-
-          return "Math helper: Here are some examples: 12 + 8 = 20, 9 × 7 = 63, √81 = 9.";
+        if (text.includes("hello") || text.includes("hi")) {
+          return "Hello! I’m your homemade AI assistant. How can I help you today?";
         }
 
-        // Literacy / language
-        if (
-          /literacy|reading|writing|sentence|word|synonym|antonym|grammar|noun|verb|adjective|story|poem/.test(lower)
-        ) {
-          if (lower.includes("noun")) {
-            return "A noun is a person, place, thing, or idea. Example: dog, school, freedom.";
-          }
-
-          if (lower.includes("verb")) {
-            return "A verb is an action word. Example: run, jump, write, think.";
-          }
-
-          if (lower.includes("adjective")) {
-            return "An adjective describes a noun. Example: happy, bright, quiet.";
-          }
-
-          if (lower.includes("sentence")) {
-            return "A sentence is a complete thought. It begins with a capital letter and usually ends with a period, question mark, or exclamation mark.";
-          }
-
-          if (lower.includes("synonym")) {
-            return "A synonym is a word with a similar meaning. Example: happy and joyful.";
-          }
-
-          if (lower.includes("antonym")) {
-            return "An antonym is a word with the opposite meaning. Example: hot and cold.";
-          }
-
-          if (lower.includes("what is literacy")) {
-            return "Literacy means the ability to read, write, understand, and use language effectively.";
-          }
-
-          return "Literacy answer: A sentence is a complete thought, nouns name things, verbs show action, and adjectives describe things.";
+        if (text.includes("game") || text.includes("geforce") || text.includes("gaming")) {
+          return "GeForce NOW is a great gaming option for cloud play. You can check it from the portal.";
         }
 
-        // Science
-        if (
-          /science|plant|cell|photosynthesis|gravity|energy|atom|water cycle|earth|planet|chemical|biology|physics|chemistry/.test(lower)
-        ) {
-          if (lower.includes("photosynthesis")) {
-            return "Photosynthesis is the process plants use to make food using sunlight, water, and carbon dioxide.";
-          }
-
-          if (lower.includes("gravity")) {
-            return "Gravity is the force that pulls objects toward Earth and other large masses.";
-          }
-
-          if (lower.includes("cell")) {
-            return "A cell is the basic unit of life. All living things are made of cells.";
-          }
-
-          if (lower.includes("atom")) {
-            return "An atom is the smallest unit of an element. Atoms combine to form molecules.";
-          }
-
-          if (lower.includes("water cycle")) {
-            return "The water cycle is the movement of water through evaporation, condensation, precipitation, and collection.";
-          }
-
-          if (lower.includes("planet")) {
-            return "A planet is a large object that orbits a star. Earth is a planet in our solar system.";
-          }
-
-          return "Science answer: Plants use photosynthesis to make food, gravity pulls objects down, and cells are the basic building blocks of life.";
+        if (text.includes("link") || text.includes("portal")) {
+          return "You can open your links from the cards above, including your GitHub Pages project.";
         }
 
-        // General chat
-        if (lower.includes("hello") || lower.includes("hi")) {
-          return "Hello! I can help with math, literacy, and science questions.";
+        if (text.includes("chatgpt") || text.includes("ai") || text.includes("assistant")) {
+          return "ChatGPT is great for ideas, coding help, and writing. I’m a small local AI, but I can still help with simple responses.";
         }
 
-        if (lower.includes("what can you do")) {
-          return "I can help with math problems, literacy questions, and basic science facts.";
+        if (text.includes("code") || text.includes("html") || text.includes("css") || text.includes("javascript")) {
+          return "I can help with simple HTML, CSS, and JavaScript ideas, layouts, buttons, and design tweaks.";
         }
 
-        if (lower.includes("game") || lower.includes("geforce") || lower.includes("gaming")) {
-          return "GeForce NOW is a cloud gaming service that lets you play games on supported devices.";
+        if (text.includes("github")) {
+          return "GitHub is perfect for hosting code, projects, and websites. It’s a strong place for development work.";
         }
 
-        if (lower.includes("github")) {
-          return "GitHub is a platform for storing and sharing code, projects, and software development work.";
+        if (text.includes("theme") || text.includes("dark") || text.includes("light")) {
+          return "You can switch between dark and light mode using the toggle in the top-right corner.";
         }
 
-        if (lower.includes("theme") || lower.includes("dark") || lower.includes("light")) {
-          return "Use the top-right switch to toggle between dark and light mode.";
-        }
-
-        return "I can answer basic math, literacy, and science questions. Try asking: 'What is photosynthesis?', 'What is a noun?', or 'What is 12 + 8?'.";
+        return "I’m your homemade AI helper. Try asking about links, gaming, GitHub, coding, or theme mode.";
       }
 
       askAi.addEventListener("click", () => {
-        aiOutput.textContent = getAiReply(aiInput.value);
+        const reply = getAiReply(aiInput.value);
+        aiOutput.textContent = reply;
       });
 
       aiInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
-          aiOutput.textContent = getAiReply(aiInput.value);
+          const reply = getAiReply(aiInput.value);
+          aiOutput.textContent = reply;
         }
       });
     </script>
