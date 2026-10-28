@@ -342,5 +342,327 @@
 
       @media (max-width: 850px) {
         .hero {
-          grid-template-columns*
-
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .quick-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          padding: 14px 16px;
+        }
+
+        .brand-text {
+          font-size: 0.9rem;
+        }
+
+        .welcome {
+          padding: 24px 20px;
+        }
+
+        .ai-controls {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="portal">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">R</div>
+          <div class="brand-text">Ripace40 Portal</div>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+          🌙 Dark
+        </button>
+      </header>
+
+      <section class="hero">
+        <div class="panel welcome">
+          <div class="status">
+            <span class="dot"></span>
+            Online
+          </div>
+
+          <h1>Hello, World! My site is officially live.</h1>
+          <p>
+            Welcome to my personal portal. Quick access to my favorite links and tools.
+          </p>
+
+          <div class="quick-grid">
+            <a class="link-card" href="https://ripace40.github.io/b/" target="_blank" rel="noreferrer">
+              <div class="card-icon">🔗</div>
+              <div>
+                <h3>My Link</h3>
+                <p>Open my GitHub Pages project.</p>
+              </div>
+              <div class="meta">
+                <span>Portal</span>
+                <span class="badge">Open</span>
+              </div>
+            </a>
+
+            <a class="link-card" href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" rel="noreferrer">
+              <div class="card-icon">🎮</div>
+              <div>
+                <h3>GeForce NOW</h3>
+                <p>Cloud gaming access and instant play.</p>
+              </div>
+              <div class="meta">
+                <span>Gaming</span>
+                <span class="badge">Play</span>
+              </div>
+            </a>
+
+            <a class="link-card" href="https://chat.openai.com/" target="_blank" rel="noreferrer">
+              <div class="card-icon">🤖</div>
+              <div>
+                <h3>ChatGPT</h3>
+                <p>AI assistant for prompts, ideas, and help.</p>
+              </div>
+              <div class="meta">
+                <span>AI</span>
+                <span class="badge">Ask</span>
+              </div>
+            </a>
+
+            <a class="link-card" href="https://github.com/" target="_blank" rel="noreferrer">
+              <div class="card-icon">💻</div>
+              <div>
+                <h3>GitHub</h3>
+                <p>Code, projects, and repositories.</p>
+              </div>
+              <div class="meta">
+                <span>Dev</span>
+                <span class="badge">Code</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="panel ai-panel">
+            <div class="ai-header">
+              <div class="ai-title">Homemade AI</div>
+              <div class="ai-badge">Math • Literacy • Science</div>
+            </div>
+
+            <div class="ai-controls">
+              <input
+                id="aiInput"
+                class="ai-input"
+                type="text"
+                placeholder="Ask me something like: 12 + 8, define photosynthesis, or explain a sentence..."
+              />
+              <button id="askAi" class="ai-button">Ask AI</button>
+            </div>
+
+            <div id="aiOutput" class="ai-output">
+              Type a question and I’ll answer it like a simple school helper.
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel stats-panel">
+          <div class="stat-box">
+            <div class="label">Status</div>
+            <div class="value">Active</div>
+            <div class="small">Everything is live and ready.</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="label">Mode</div>
+            <div class="value" id="modeValue">Dark</div>
+            <div class="small">Switch between themes anytime.</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="label">Quick Access</div>
+            <div class="value">4</div>
+            <div class="small">Useful links in the portal.</div>
+          </div>
+        </aside>
+      </section>
+    </div>
+
+    <script>
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      const modeValue = document.getElementById("modeValue");
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        body.classList.add("light");
+        toggle.textContent = "☀️ Light";
+        modeValue.textContent = "Light";
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("light");
+
+        const isLight = body.classList.contains("light");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        toggle.textContent = isLight ? "☀️ Light" : "🌙 Dark";
+        modeValue.textContent = isLight ? "Light" : "Dark";
+      });
+
+      const aiInput = document.getElementById("aiInput");
+      const askAi = document.getElementById("askAi");
+      const aiOutput = document.getElementById("aiOutput");
+
+      function safeEvalMathExpression(expr) {
+        const sanitized = expr.replace(/[^0-9+\-*/().%\\s]/g, "");
+        if (!sanitized.trim()) return null;
+        try {
+          return Function(`"use strict"; return (${sanitized});`)();
+        } catch {
+          return null;
+        }
+      }
+
+      function getAiReply(message) {
+        const text = message.trim();
+
+        if (!text) {
+          return "Please ask me a question about math, literacy, or science.";
+        }
+
+        const lower = text.toLowerCase();
+
+        // Math
+        if (
+          /(\d+.*[+\-*/%].*\d+|\badd\b|\bsubtract\b|\bmultiply\b|\bdivide\b|\bmath\b|\bcalculate\b|\bsolve\b)/.test(lower)
+        ) {
+          const match = lower.match(/(-?\d+(\.\d+)?\s*[-+*/%]\s*-?\d+(\.\d+)?)/);
+          if (match) {
+            const expr = match[0].replace(/\s+/g, "");
+            const result = safeEvalMathExpression(expr);
+            if (result !== null && Number.isFinite(result)) {
+              return `Math answer: ${expr} = ${result}.`;
+            }
+          }
+
+          if (lower.includes("12 + 8") || lower.includes("12+8")) {
+            return "Math answer: 12 + 8 = 20.";
+          }
+
+          if (lower.includes("9 * 7") || lower.includes("9*7")) {
+            return "Math answer: 9 × 7 = 63.";
+          }
+
+          if (lower.includes("square root of 81") || lower.includes("sqrt 81")) {
+            return "Math answer: √81 = 9.";
+          }
+
+          if (lower.includes("area of a rectangle") || lower.includes("rectangle area")) {
+            return "Area of a rectangle = length × width. Example: 5 × 4 = 20 square units.";
+          }
+
+          return "Math helper: Here are some examples: 12 + 8 = 20, 9 × 7 = 63, √81 = 9.";
+        }
+
+        // Literacy / language
+        if (
+          /literacy|reading|writing|sentence|word|synonym|antonym|grammar|noun|verb|adjective|story|poem/.test(lower)
+        ) {
+          if (lower.includes("noun")) {
+            return "A noun is a person, place, thing, or idea. Example: dog, school, freedom.";
+          }
+
+          if (lower.includes("verb")) {
+            return "A verb is an action word. Example: run, jump, write, think.";
+          }
+
+          if (lower.includes("adjective")) {
+            return "An adjective describes a noun. Example: happy, bright, quiet.";
+          }
+
+          if (lower.includes("sentence")) {
+            return "A sentence is a complete thought. It begins with a capital letter and usually ends with a period, question mark, or exclamation mark.";
+          }
+
+          if (lower.includes("synonym")) {
+            return "A synonym is a word with a similar meaning. Example: happy and joyful.";
+          }
+
+          if (lower.includes("antonym")) {
+            return "An antonym is a word with the opposite meaning. Example: hot and cold.";
+          }
+
+          if (lower.includes("what is literacy")) {
+            return "Literacy means the ability to read, write, understand, and use language effectively.";
+          }
+
+          return "Literacy answer: A sentence is a complete thought, nouns name things, verbs show action, and adjectives describe things.";
+        }
+
+        // Science
+        if (
+          /science|plant|cell|photosynthesis|gravity|energy|atom|water cycle|earth|planet|chemical|biology|physics|chemistry/.test(lower)
+        ) {
+          if (lower.includes("photosynthesis")) {
+            return "Photosynthesis is the process plants use to make food using sunlight, water, and carbon dioxide.";
+          }
+
+          if (lower.includes("gravity")) {
+            return "Gravity is the force that pulls objects toward Earth and other large masses.";
+          }
+
+          if (lower.includes("cell")) {
+            return "A cell is the basic unit of life. All living things are made of cells.";
+          }
+
+          if (lower.includes("atom")) {
+            return "An atom is the smallest unit of an element. Atoms combine to form molecules.";
+          }
+
+          if (lower.includes("water cycle")) {
+            return "The water cycle is the movement of water through evaporation, condensation, precipitation, and collection.";
+          }
+
+          if (lower.includes("planet")) {
+            return "A planet is a large object that orbits a star. Earth is a planet in our solar system.";
+          }
+
+          return "Science answer: Plants use photosynthesis to make food, gravity pulls objects down, and cells are the basic building blocks of life.";
+        }
+
+        // General chat
+        if (lower.includes("hello") || lower.includes("hi")) {
+          return "Hello! I can help with math, literacy, and science questions.";
+        }
+
+        if (lower.includes("what can you do")) {
+          return "I can help with math problems, literacy questions, and basic science facts.";
+        }
+
+        if (lower.includes("game") || lower.includes("geforce") || lower.includes("gaming")) {
+          return "GeForce NOW is a cloud gaming service that lets you play games on supported devices.";
+        }
+
+        if (lower.includes("github")) {
+          return "GitHub is a platform for storing and sharing code, projects, and software development work.";
+        }
+
+        if (lower.includes("theme") || lower.includes("dark") || lower.includes("light")) {
+          return "Use the top-right switch to toggle between dark and light mode.";
+        }
+
+        return "I can answer basic math, literacy, and science questions. Try asking: 'What is photosynthesis?', 'What is a noun?', or 'What is 12 + 8?'.";
+      }
+
+      askAi.addEventListener("click", () => {
+        aiOutput.textContent = getAiReply(aiInput.value);
+      });
+
+      aiInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          aiOutput.textContent = getAiReply(aiInput.value);
+        }
+      });
+    </script>
+  </body>
+</html>
