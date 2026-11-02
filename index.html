@@ -9,32 +9,32 @@
         --bg-1: #0b1020;
         --bg-2: #121a2d;
         --bg-3: #1a2240;
-        --panel: rgba(255, 255, 255, 0.06);
-        --panel-strong: rgba(255, 255, 255, 0.1);
-        --panel-border: rgba(255, 255, 255, 0.12);
+        --panel: rgba(255,255,255,0.06);
+        --panel-strong: rgba(255,255,255,0.1);
+        --panel-border: rgba(255,255,255,0.12);
         --text: #f4f4f4;
         --muted: #dfe7ff;
         --primary-1: #7c5cff;
         --primary-2: #3f80ff;
         --success: #4ade80;
         --warning: #fbbf24;
-        --shadow: rgba(0, 0, 0, 0.25);
+        --shadow: rgba(0,0,0,0.25);
       }
 
       body.light {
         --bg-1: #edf4ff;
         --bg-2: #dfeaff;
         --bg-3: #edf1ff;
-        --panel: rgba(255, 255, 255, 0.72);
-        --panel-strong: rgba(255, 255, 255, 0.9);
-        --panel-border: rgba(20, 30, 60, 0.08);
+        --panel: rgba(255,255,255,0.72);
+        --panel-strong: rgba(255,255,255,0.9);
+        --panel-border: rgba(20,30,60,0.08);
         --text: #111827;
         --muted: #4b5563;
         --primary-1: #6d5ef8;
         --primary-2: #2c7df7;
         --success: #16a34a;
         --warning: #d97706;
-        --shadow: rgba(98, 120, 190, 0.18);
+        --shadow: rgba(98,120,190,0.18);
       }
 
       * { box-sizing: border-box; }
@@ -45,11 +45,11 @@
         height: 100%;
         font-family: Arial, sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(124, 92, 255, 0.28), transparent 25%),
-          radial-gradient(circle at bottom right, rgba(63, 128, 255, 0.22), transparent 30%),
+          radial-gradient(circle at top left, rgba(124,92,255,.28), transparent 25%),
+          radial-gradient(circle at bottom right, rgba(63,128,255,.22), transparent 30%),
           linear-gradient(135deg, var(--bg-1), var(--bg-2));
         color: var(--text);
-        transition: background 0.3s ease, color 0.3s ease;
+        transition: background .3s ease, color .3s ease;
       }
 
       body {
@@ -59,9 +59,7 @@
         padding: 30px 16px;
       }
 
-      .portal {
-        width: min(1180px, 100%);
-      }
+      .portal { width: min(1180px, 100%); }
 
       .topbar {
         display: flex;
@@ -94,7 +92,7 @@
         background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
         color: white;
         font-size: 1.2rem;
-        box-shadow: 0 14px 25px rgba(124, 92, 255, 0.35);
+        box-shadow: 0 14px 25px rgba(124,92,255,.35);
       }
 
       .search-wrap {
@@ -109,7 +107,7 @@
         align-items: center;
         gap: 10px;
         padding: 10px 12px;
-        background: rgba(255,255,255,0.03);
+        background: rgba(255,255,255,.03);
         border: 1px solid var(--panel-border);
         border-radius: 999px;
       }
@@ -119,7 +117,7 @@
         background: transparent;
         border: none;
         color: var(--text);
-        font-size: 0.98rem;
+        font-size: .98rem;
         padding: 10px 8px;
         outline: none;
       }
@@ -138,7 +136,7 @@
 
       .theme-toggle {
         border: 1px solid var(--panel-border);
-        background: rgba(255,255,255,0.05);
+        background: rgba(255,255,255,.05);
         color: var(--text);
         border-radius: 999px;
         padding: 10px 16px;
@@ -160,9 +158,7 @@
         backdrop-filter: blur(12px);
       }
 
-      .welcome {
-        padding: 30px;
-      }
+      .welcome { padding: 30px; }
 
       .status {
         display: inline-flex;
@@ -170,8 +166,8 @@
         gap: 10px;
         padding: 9px 14px;
         border-radius: 999px;
-        background: rgba(74, 222, 128, 0.12);
-        border: 1px solid rgba(74, 222, 128, 0.28);
+        background: rgba(74,222,128,.12);
+        border: 1px solid rgba(74,222,128,.28);
         color: var(--success);
         font-weight: bold;
         margin-bottom: 18px;
@@ -182,7 +178,7 @@
         height: 10px;
         border-radius: 50%;
         background: var(--success);
-        box-shadow: 0 0 18px rgba(74, 222, 128, 0.9);
+        box-shadow: 0 0 18px rgba(74,222,128,.9);
       }
 
       .welcome h1 {
@@ -209,18 +205,18 @@
         justify-content: space-between;
         min-height: 180px;
         padding: 20px;
-        background: linear-gradient(180deg, var(--panel-strong), rgba(255,255,255,0.02));
+        background: linear-gradient(180deg, var(--panel-strong), rgba(255,255,255,.02));
         border: 1px solid var(--panel-border);
         border-radius: 20px;
         text-decoration: none;
         color: var(--text);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
       }
 
       .link-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 20px 35px rgba(0,0,0,0.15);
-        border-color: rgba(124, 92, 255, 0.45);
+        box-shadow: 0 20px 35px rgba(0,0,0,.15);
+        border-color: rgba(124,92,255,.45);
       }
 
       .card-icon {
@@ -233,7 +229,7 @@
         font-size: 1.5rem;
         background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
         color: white;
-        box-shadow: 0 12px 24px rgba(124, 92, 255, 0.30);
+        box-shadow: 0 12px 24px rgba(124,92,255,.30);
       }
 
       .link-card h3 {
@@ -244,7 +240,7 @@
       .link-card p {
         margin: 0;
         color: var(--muted);
-        font-size: 0.92rem;
+        font-size: .92rem;
         line-height: 1.5;
       }
 
@@ -253,7 +249,7 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 16px;
-        font-size: 0.8rem;
+        font-size: .8rem;
         color: var(--muted);
       }
 
@@ -261,14 +257,12 @@
         display: inline-block;
         padding: 6px 10px;
         border-radius: 999px;
-        background: rgba(124, 92, 255, 0.12);
-        border: 1px solid rgba(124, 92, 255, 0.28);
+        background: rgba(124,92,255,.12);
+        border: 1px solid rgba(124,92,255,.28);
         color: var(--text);
       }
 
-      .streaming {
-        margin-top: 24px;
-      }
+      .streaming { margin-top: 24px; }
 
       .section-title {
         display: flex;
@@ -293,8 +287,8 @@
         text-decoration: none;
         font-weight: bold;
         color: white;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.18);
-        transition: transform 0.2s ease;
+        box-shadow: 0 14px 28px rgba(0,0,0,.18);
+        transition: transform .2s ease;
       }
 
       .stream-card:hover { transform: translateY(-4px); }
@@ -314,8 +308,8 @@
       }
 
       .widget-title {
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
+        font-size: .8rem;
+        letter-spacing: .08em;
         text-transform: uppercase;
         color: var(--muted);
         margin-bottom: 12px;
@@ -355,7 +349,7 @@
 
       .weather-meta {
         color: var(--muted);
-        font-size: 0.9rem;
+        font-size: .9rem;
       }
 
       .proxy-box {
@@ -370,12 +364,12 @@
         gap: 8px;
         padding: 12px;
         border-radius: 12px;
-        background: rgba(255,255,255,0.04);
+        background: rgba(255,255,255,.04);
         border: 1px solid var(--panel-border);
       }
 
       .proxy-form label {
-        font-size: 0.85rem;
+        font-size: .85rem;
         color: var(--muted);
         font-weight: bold;
       }
@@ -385,7 +379,7 @@
         padding: 10px 12px;
         border: 1px solid var(--panel-border);
         border-radius: 10px;
-        background: rgba(255,255,255,0.03);
+        background: rgba(255,255,255,.03);
         color: var(--text);
         outline: none;
       }
@@ -421,10 +415,10 @@
       .ai-badge {
         padding: 7px 12px;
         border-radius: 999px;
-        background: rgba(59, 130, 246, 0.12);
-        border: 1px solid rgba(59, 130, 246, 0.28);
+        background: rgba(59,130,246,.12);
+        border: 1px solid rgba(59,130,246,.28);
         color: var(--text);
-        font-size: 0.8rem;
+        font-size: .8rem;
       }
 
       .ai-controls {
@@ -439,7 +433,7 @@
         padding: 14px 16px;
         border: 1px solid var(--panel-border);
         border-radius: 14px;
-        background: rgba(255,255,255,0.03);
+        background: rgba(255,255,255,.03);
         color: var(--text);
         font-size: 1rem;
         outline: none;
@@ -453,11 +447,11 @@
         padding: 14px 18px;
         font-weight: bold;
         cursor: pointer;
-        box-shadow: 0 12px 24px rgba(124, 92, 255, 0.35);
+        box-shadow: 0 12px 24px rgba(124,92,255,.35);
       }
 
       .ai-output {
-        background: rgba(255,255,255,0.04);
+        background: rgba(255,255,255,.04);
         border: 1px solid var(--panel-border);
         border-radius: 16px;
         padding: 16px 18px;
@@ -467,32 +461,15 @@
       }
 
       @media (max-width: 960px) {
-        .main-layout {
-          grid-template-columns: 1fr;
-        }
+        .main-layout { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 680px) {
-        .topbar {
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .search-wrap {
-          width: 100%;
-        }
-
-        .quick-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stream-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .ai-controls {
-          flex-direction: column;
-        }
+        .topbar { flex-wrap: wrap; justify-content: center; }
+        .search-wrap { width: 100%; }
+        .quick-grid { grid-template-columns: 1fr; }
+        .stream-grid { grid-template-columns: 1fr; }
+        .ai-controls { flex-direction: column; }
       }
     </style>
   </head>
@@ -621,12 +598,7 @@
               </div>
 
               <div class="ai-controls">
-                <input
-                  id="aiInput"
-                  class="ai-input"
-                  type="text"
-                  placeholder="Ask me something like: 12 + 8, define photosynthesis, or explain a sentence..."
-                />
+                <input id="aiInput" class="ai-input" type="text" placeholder="Ask me something like: 12 + 8, define photosynthesis..." />
                 <button id="askAi" class="ai-button">Ask AI</button>
               </div>
 
@@ -660,22 +632,22 @@
           <div class="panel widget">
             <div class="widget-title">Daily Proxy Search</div>
             <div class="proxy-box">
-              <form class="proxy-form" onsubmit="event.preventDefault(); openProxy(this.querySelector('input').value);">
-                <label>Proxy 1</label>
-                <input type="text" placeholder="Type a URL or search term..." />
-                <button type="submit">Go</button>
+              <form class="proxy-form" data-engine="google" onsubmit="event.preventDefault(); runProxySearch(this);">
+                <label>Proxy 1 = Google</label>
+                <input type="text" placeholder="Type a website or search term..." />
+                <button type="submit">Search</button>
               </form>
 
-              <form class="proxy-form" onsubmit="event.preventDefault(); openProxy(this.querySelector('input').value);">
-                <label>Proxy 2</label>
-                <input type="text" placeholder="Type a URL or search term..." />
-                <button type="submit">Go</button>
+              <form class="proxy-form" data-engine="bing" onsubmit="event.preventDefault(); runProxySearch(this);">
+                <label>Proxy 2 = Bing</label>
+                <input type="text" placeholder="Type a website or search term..." />
+                <button type="submit">Search</button>
               </form>
 
-              <form class="proxy-form" onsubmit="event.preventDefault(); openProxy(this.querySelector('input').value);">
-                <label>Proxy 3</label>
-                <input type="text" placeholder="Type a URL or search term..." />
-                <button type="submit">Go</button>
+              <form class="proxy-form" data-engine="duckduckgo" onsubmit="event.preventDefault(); runProxySearch(this);">
+                <label>Proxy 3 = DuckDuckGo</label>
+                <input type="text" placeholder="Type a website or search term..." />
+                <button type="submit">Search</button>
               </form>
             </div>
           </div>
@@ -700,32 +672,39 @@
         toggle.textContent = isLight ? "☀️ Light" : "🌙 Dark";
       });
 
-      function openProxy(value) {
-        const input = (value || "").trim();
+      const searchEngines = {
+        google: "https://www.google.com/search?q=",
+        bing: "https://www.bing.com/search?q=",
+        duckduckgo: "https://duckduckgo.com/?q="
+      };
+
+      function looksLikeWebsite(value) {
+        return /(?:[a-z0-9-]+\.)+[a-z]{2,}/i.test(value) || /^https?:\/\//i.test(value);
+      }
+
+      function buildProxyUrl(site) {
+        const clean = site.replace(/^https?:\/\//i, "");
+        return "https://r.jina.ai/http://" + clean;
+      }
+
+      function runProxySearch(form) {
+        const input = form.querySelector("input").value.trim();
+        const engine = form.dataset.engine;
 
         if (!input) {
-          alert("Type a website or a search term first.");
+          alert("Please type a website or search term.");
           return;
         }
 
-        // If user typed a search query, use Google
-        const looksLikeSearch = !/[.]/.test(input) && !input.includes("/") && !/^https?:\/\//i.test(input);
-
-        if (looksLikeSearch) {
-          window.open("https://www.google.com/search?q=" + encodeURIComponent(input), "_blank");
+        if (looksLikeWebsite(input)) {
+          let site = input;
+          if (!/^https?:\/\//i.test(site)) site = "https://" + site;
+          window.open(buildProxyUrl(site), "_blank");
           return;
         }
 
-        // If user typed a site name without protocol, add https://
-        let site = input;
-        if (!/^https?:\/\//i.test(site)) {
-          site = "https://" + site;
-        }
-
-        // Public proxy
-        const proxyBase = "https://r.jina.ai/http://";
-        const cleanSite = site.replace(/^https?:\/\//i, "");
-        window.open(proxyBase + cleanSite, "_blank");
+        const searchUrl = searchEngines[engine] + encodeURIComponent(input);
+        window.open(searchUrl, "_blank");
       }
 
       function updateClock() {
@@ -769,123 +748,51 @@
 
       function getAiReply(message) {
         const text = message.trim();
-
-        if (!text) {
-          return "Please ask me a question about math, literacy, or science.";
-        }
+        if (!text) return "Please ask me a question about math, literacy, or science.";
 
         const lower = text.toLowerCase();
 
-        if (
-          /(\d+.*[+\-*/%].*\d+|\badd\b|\bsubtract\b|\bmultiply\b|\bdivide\b|\bmath\b|\bcalculate\b|\bsolve\b)/.test(lower)
-        ) {
-          const match = lower.match(/(-?\d+(\.\d+)?\s*[-+*/%]\s*-?\d+(\.\d+)?)/);
+        if (/(\\d+.*[+\\-*/%].*\\d+|\\badd\\b|\\bsubtract\\b|\\bmultiply\\b|\\bdivide\\b|\\bmath\\b|\\bcalculate\\b|\\bsolve\\b)/.test(lower)) {
+          const match = lower.match(/(-?\\d+(\\.\\d+)?\\s*[-+*/%]\\s*-?\\d+(\\.\\d+)?)/);
           if (match) {
-            const expr = match[0].replace(/\s+/g, "");
+            const expr = match[0].replace(/\\s+/g, "");
             const result = safeEvalMathExpression(expr);
             if (result !== null && Number.isFinite(result)) {
               return `Math answer: ${expr} = ${result}.`;
             }
           }
-
-          if (lower.includes("12 + 8") || lower.includes("12+8")) {
-            return "Math answer: 12 + 8 = 20.";
-          }
-
-          if (lower.includes("9 * 7") || lower.includes("9*7")) {
-            return "Math answer: 9 × 7 = 63.";
-          }
-
-          if (lower.includes("square root of 81") || lower.includes("sqrt 81")) {
-            return "Math answer: √81 = 9.";
-          }
-
+          if (lower.includes("12 + 8") || lower.includes("12+8")) return "Math answer: 12 + 8 = 20.";
+          if (lower.includes("9 * 7") || lower.includes("9*7")) return "Math answer: 9 × 7 = 63.";
+          if (lower.includes("square root of 81") || lower.includes("sqrt 81")) return "Math answer: √81 = 9.";
           return "Math helper: Example answers: 12 + 8 = 20, 9 × 7 = 63, √81 = 9.";
         }
 
-        if (
-          /literacy|reading|writing|sentence|word|synonym|antonym|grammar|noun|verb|adjective|story|poem/.test(lower)
-        ) {
-          if (lower.includes("noun")) {
-            return "A noun is a person, place, thing, or idea. Example: dog, school, freedom.";
-          }
-
-          if (lower.includes("verb")) {
-            return "A verb is an action word. Example: run, jump, write, think.";
-          }
-
-          if (lower.includes("adjective")) {
-            return "An adjective describes a noun. Example: happy, bright, quiet.";
-          }
-
-          if (lower.includes("sentence")) {
-            return "A sentence is a complete thought. It begins with a capital letter and usually ends with a period, question mark, or exclamation mark.";
-          }
-
-          if (lower.includes("synonym")) {
-            return "A synonym is a word with a similar meaning. Example: happy and joyful.";
-          }
-
-          if (lower.includes("antonym")) {
-            return "An antonym is a word with the opposite meaning. Example: hot and cold.";
-          }
-
+        if (/literacy|reading|writing|sentence|word|synonym|antonym|grammar|noun|verb|adjective|story|poem/.test(lower)) {
+          if (lower.includes("noun")) return "A noun is a person, place, thing, or idea. Example: dog, school, freedom.";
+          if (lower.includes("verb")) return "A verb is an action word. Example: run, jump, write, think.";
+          if (lower.includes("adjective")) return "An adjective describes a noun. Example: happy, bright, quiet.";
+          if (lower.includes("sentence")) return "A sentence is a complete thought. It begins with a capital letter and usually ends with a period, question mark, or exclamation mark.";
+          if (lower.includes("synonym")) return "A synonym is a word with a similar meaning. Example: happy and joyful.";
+          if (lower.includes("antonym")) return "An antonym is a word with the opposite meaning. Example: hot and cold.";
           return "Literacy answer: A sentence is a complete thought, nouns name things, verbs show action, and adjectives describe things.";
         }
 
-        if (
-          /science|plant|cell|photosynthesis|gravity|energy|atom|water cycle|earth|planet|chemical|biology|physics|chemistry/.test(lower)
-        ) {
-          if (lower.includes("photosynthesis")) {
-            return "Photosynthesis is the process plants use to make food using sunlight, water, and carbon dioxide.";
-          }
-
-          if (lower.includes("gravity")) {
-            return "Gravity is the force that pulls objects toward Earth and other large masses.";
-          }
-
-          if (lower.includes("cell")) {
-            return "A cell is the basic unit of life. All living things are made of cells.";
-          }
-
-          if (lower.includes("atom")) {
-            return "An atom is the smallest unit of an element. Atoms combine to form molecules.";
-          }
-
-          if (lower.includes("water cycle")) {
-            return "The water cycle is the movement of water through evaporation, condensation, precipitation, and collection.";
-          }
-
+        if (/science|plant|cell|photosynthesis|gravity|energy|atom|water cycle|earth|planet|chemical|biology|physics|chemistry/.test(lower)) {
+          if (lower.includes("photosynthesis")) return "Photosynthesis is the process plants use to make food using sunlight, water, and carbon dioxide.";
+          if (lower.includes("gravity")) return "Gravity is the force that pulls objects toward Earth and other large masses.";
+          if (lower.includes("cell")) return "A cell is the basic unit of life. All living things are made of cells.";
+          if (lower.includes("atom")) return "An atom is the smallest unit of an element. Atoms combine to form molecules.";
+          if (lower.includes("water cycle")) return "The water cycle is the movement of water through evaporation, condensation, precipitation, and collection.";
           return "Science answer: Plants use photosynthesis to make food, gravity pulls objects down, and cells are the basic building blocks of life.";
         }
 
-        if (lower.includes("hello") || lower.includes("hi")) {
-          return "Hello! I can help with math, literacy, and science questions.";
-        }
-
-        if (lower.includes("what can you do")) {
-          return "I can help with math problems, literacy questions, and basic science facts.";
-        }
-
-        if (lower.includes("game") || lower.includes("geforce") || lower.includes("gaming")) {
-          return "GeForce NOW is a cloud gaming service that lets you play games on supported devices.";
-        }
-
-        if (lower.includes("github")) {
-          return "GitHub is a platform for storing and sharing code, projects, and software development work.";
-        }
-
-        if (lower.includes("theme") || lower.includes("dark") || lower.includes("light")) {
-          return "Use the top-right switch to toggle between dark and light mode.";
-        }
-
-        if (lower.includes("youtube")) {
-          return "YouTube is a video platform for tutorials, entertainment, learning, and music.";
-        }
-
-        if (lower.includes("proxy")) {
-          return "A web proxy helps you access websites through another server, often for easier browsing or access.";
-        }
+        if (lower.includes("hello") || lower.includes("hi")) return "Hello! I can help with math, literacy, and science questions.";
+        if (lower.includes("what can you do")) return "I can help with math problems, literacy questions, and basic science facts.";
+        if (lower.includes("game") || lower.includes("geforce") || lower.includes("gaming")) return "GeForce NOW is a cloud gaming service that lets you play games on supported devices.";
+        if (lower.includes("github")) return "GitHub is a platform for storing and sharing code, projects, and software development work.";
+        if (lower.includes("theme") || lower.includes("dark") || lower.includes("light")) return "Use the top-right switch to toggle between dark and light mode.";
+        if (lower.includes("youtube")) return "YouTube is a video platform for tutorials, entertainment, learning, and music.";
+        if (lower.includes("proxy")) return "A web proxy helps you access websites through another server, often for easier browsing or access.";
 
         return "I can answer basic math, literacy, and science questions. Try asking: 'What is photosynthesis?', 'What is a noun?', or 'What is 12 + 8?'.";
       }
@@ -894,7 +801,7 @@
         aiOutput.textContent = getAiReply(aiInput.value);
       });
 
-      aiInput.addEventListener("keydown", function (event) {
+      aiInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           aiOutput.textContent = getAiReply(aiInput.value);
         }
