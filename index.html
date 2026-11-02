@@ -362,18 +362,43 @@
       .proxy-box {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
       }
 
-      .proxy-link {
-        display: block;
-        padding: 12px 14px;
+      .proxy-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
         border-radius: 12px;
-        text-decoration: none;
-        color: var(--text);
         background: rgba(255,255,255,0.04);
         border: 1px solid var(--panel-border);
+      }
+
+      .proxy-form label {
+        font-size: 0.85rem;
+        color: var(--muted);
         font-weight: bold;
+      }
+
+      .proxy-form input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--panel-border);
+        border-radius: 10px;
+        background: rgba(255,255,255,0.03);
+        color: var(--text);
+        outline: none;
+      }
+
+      .proxy-form button {
+        padding: 10px 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
       }
 
       .ai-panel {
@@ -556,7 +581,7 @@
                 <div class="card-icon">🛡️</div>
                 <div>
                   <h3>Croxy Proxy</h3>
-                  <p>Launch a proxy for easy browsing.</p>
+                  <p>Launch a proxy for easier browsing.</p>
                 </div>
                 <div class="meta">
                   <span>Proxy</span>
@@ -634,12 +659,25 @@
           </div>
 
           <div class="panel widget">
-            <div class="widget-title">Daily Proxy Links</div>
+            <div class="widget-title">Daily Proxy Search</div>
             <div class="proxy-box">
-              <!-- Replace these href values with your real homemade proxy URLs -->
-              <a class="proxy-link" href="#">Proxy 1</a>
-              <a class="proxy-link" href="#">Proxy 2</a>
-              <a class="proxy-link" href="#">Proxy 3</a>
+              <form class="proxy-form" action="https://www.google.com/search" method="get" target="_blank">
+                <label>Proxy 1</label>
+                <input type="text" name="q" placeholder="Search with proxy 1..." />
+                <button type="submit">Search</button>
+              </form>
+
+              <form class="proxy-form" action="https://www.bing.com/search" method="get" target="_blank">
+                <label>Proxy 2</label>
+                <input type="text" name="q" placeholder="Search with proxy 2..." />
+                <button type="submit">Search</button>
+              </form>
+
+              <form class="proxy-form" action="https://duckduckgo.com/" method="get" target="_blank">
+                <label>Proxy 3</label>
+                <input type="text" name="q" placeholder="Search with proxy 3..." />
+                <button type="submit">Search</button>
+              </form>
             </div>
           </div>
         </aside>
