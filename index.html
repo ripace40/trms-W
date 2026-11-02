@@ -3,807 +3,294 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ripace40 Portal</title>
+    <title>Proxy Browser Portal</title>
     <style>
       :root {
         --bg-1: #0b1020;
         --bg-2: #121a2d;
-        --bg-3: #1a2240;
         --panel: rgba(255,255,255,0.06);
-        --panel-strong: rgba(255,255,255,0.1);
         --panel-border: rgba(255,255,255,0.12);
         --text: #f4f4f4;
         --muted: #dfe7ff;
         --primary-1: #7c5cff;
         --primary-2: #3f80ff;
-        --success: #4ade80;
-        --warning: #fbbf24;
         --shadow: rgba(0,0,0,0.25);
-      }
-
-      body.light {
-        --bg-1: #edf4ff;
-        --bg-2: #dfeaff;
-        --bg-3: #edf1ff;
-        --panel: rgba(255,255,255,0.72);
-        --panel-strong: rgba(255,255,255,0.9);
-        --panel-border: rgba(20,30,60,0.08);
-        --text: #111827;
-        --muted: #4b5563;
-        --primary-1: #6d5ef8;
-        --primary-2: #2c7df7;
-        --success: #16a34a;
-        --warning: #d97706;
-        --shadow: rgba(98,120,190,0.18);
       }
 
       * { box-sizing: border-box; }
 
-      html, body {
-        margin: 0;
-        min-height: 100%;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(124,92,255,.28), transparent 25%),
-          radial-gradient(circle at bottom right, rgba(63,128,255,.22), transparent 30%),
-          linear-gradient(135deg, var(--bg-1), var(--bg-2));
-        color: var(--text);
-        transition: background .3s ease, color .3s ease;
-      }
-
       body {
+        margin: 0;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 30px 16px;
-      }
-
-      .portal { width: min(1180px, 100%); }
-
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 18px 22px;
-        background: var(--panel);
-        border: 1px solid var(--panel-border);
-        border-radius: 18px;
-        box-shadow: 0 18px 40px var(--shadow);
-        backdrop-filter: blur(14px);
-        margin-bottom: 22px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        font-weight: 700;
-      }
-
-      .logo {
-        width: 46px;
-        height: 46px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
-        color: white;
-        font-size: 1.2rem;
-        box-shadow: 0 14px 25px rgba(124,92,255,.35);
-      }
-
-      .search-wrap {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-      }
-
-      .search-form {
-        width: min(560px, 100%);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 12px;
-        background: rgba(255,255,255,.03);
-        border: 1px solid var(--panel-border);
-        border-radius: 999px;
-      }
-
-      .search-form input {
-        flex: 1;
-        background: transparent;
-        border: none;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
         color: var(--text);
-        font-size: .98rem;
-        padding: 10px 8px;
-        outline: none;
+        font-family: Arial, sans-serif;
       }
 
-      .search-form input::placeholder { color: var(--muted); }
-
-      .search-btn {
-        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
-        color: white;
-        border: none;
-        border-radius: 999px;
-        padding: 10px 14px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .theme-toggle {
-        border: 1px solid var(--panel-border);
-        background: rgba(255,255,255,.05);
-        color: var(--text);
-        border-radius: 999px;
-        padding: 10px 16px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .main-layout {
-        display: grid;
-        grid-template-columns: 1.7fr 0.9fr;
-        gap: 22px;
-      }
-
-      .panel {
+      .browser {
+        width: min(1200px, 96vw);
+        height: min(92vh, 920px);
         background: var(--panel);
         border: 1px solid var(--panel-border);
         border-radius: 24px;
-        box-shadow: 0 20px 45px var(--shadow);
-        backdrop-filter: blur(12px);
+        box-shadow: 0 25px 60px var(--shadow);
+        overflow: hidden;
       }
 
-      .welcome { padding: 30px; }
+      .browser-topbar {
+        height: 72px;
+        background: rgba(255,255,255,0.04);
+        border-bottom: 1px solid var(--panel-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        gap: 16px;
+      }
 
-      .status {
-        display: inline-flex;
+      .nav-dots {
+        display: flex;
         align-items: center;
         gap: 10px;
-        padding: 9px 14px;
-        border-radius: 999px;
-        background: rgba(74,222,128,.12);
-        border: 1px solid rgba(74,222,128,.28);
-        color: var(--success);
-        font-weight: bold;
-        margin-bottom: 18px;
       }
 
       .dot {
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        background: var(--success);
-        box-shadow: 0 0 18px rgba(74,222,128,.9);
       }
 
-      .welcome h1 {
-        margin: 0 0 18px;
-        font-size: clamp(2.1rem, 4vw, 3.5rem);
-        line-height: 1.1;
-      }
+      .red { background: #ff5f57; }
+      .yellow { background: #ffbd2f; }
+      .green { background: #28c840; }
 
-      .welcome p {
-        margin: 0 0 26px;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
-      .quick-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
-        gap: 18px;
-      }
-
-      .link-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 180px;
-        padding: 20px;
-        background: linear-gradient(180deg, var(--panel-strong), rgba(255,255,255,.02));
-        border: 1px solid var(--panel-border);
-        border-radius: 20px;
-        text-decoration: none;
-        color: var(--text);
-        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      }
-
-      .link-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 35px rgba(0,0,0,.15);
-        border-color: rgba(124,92,255,.45);
-      }
-
-      .card-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
-        color: white;
-        box-shadow: 0 12px 24px rgba(124,92,255,.30);
-      }
-
-      .link-card h3 {
-        margin: 16px 0 8px;
-        font-size: 1.15rem;
-      }
-
-      .link-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: .92rem;
-        line-height: 1.5;
-      }
-
-      .meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 16px;
-        font-size: .8rem;
-        color: var(--muted);
-      }
-
-      .badge {
-        display: inline-block;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(124,92,255,.12);
-        border: 1px solid rgba(124,92,255,.28);
-        color: var(--text);
-      }
-
-      .streaming { margin-top: 24px; }
-
-      .section-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 14px;
-        font-weight: 700;
-      }
-
-      .stream-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(160px, 1fr));
-        gap: 14px;
-      }
-
-      .stream-card {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 96px;
-        border-radius: 18px;
-        text-decoration: none;
+      .browser-title {
+        flex: 1;
+        text-align: center;
         font-weight: bold;
-        color: white;
-        box-shadow: 0 14px 28px rgba(0,0,0,.18);
-        transition: transform .2s ease;
+        color: var(--muted);
+        letter-spacing: 0.04em;
       }
 
-      .stream-card:hover { transform: translateY(-4px); }
-
-      .netflix { background: linear-gradient(135deg, #e50914, #b20710); }
-      .youtube { background: linear-gradient(135deg, #ff0000, #e21111); }
-      .stream { background: linear-gradient(135deg, #00c2ff, #3d7dff); }
+      .content {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        height: calc(100% - 72px);
+      }
 
       .sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
+        border-right: 1px solid var(--panel-border);
+        background: rgba(255,255,255,0.02);
+        padding: 16px;
+        overflow-y: auto;
       }
 
-      .widget {
-        padding: 22px 18px;
-      }
-
-      .widget-title {
-        font-size: .8rem;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 12px;
-      }
-
-      .clock-box {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      #clock {
-        font-size: clamp(2rem, 3vw, 3rem);
-        font-weight: 700;
-      }
-
-      #date {
-        color: var(--muted);
-        font-size: 1rem;
-      }
-
-      .weather-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-      }
-
-      .weather-icon {
-        font-size: 2.8rem;
-      }
-
-      .weather-temp {
-        font-size: 2.1rem;
-        font-weight: 700;
-      }
-
-      .weather-meta {
-        color: var(--muted);
-        font-size: .9rem;
-      }
-
-      .proxy-box {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .proxy-form {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px;
-        border-radius: 12px;
-        background: rgba(255,255,255,.04);
+      .proxy-card {
+        background: rgba(255,255,255,0.04);
         border: 1px solid var(--panel-border);
-      }
-
-      .proxy-form label {
-        font-size: .85rem;
-        color: var(--muted);
-        font-weight: bold;
-      }
-
-      .proxy-form input {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid var(--panel-border);
-        border-radius: 10px;
-        background: rgba(255,255,255,.03);
-        color: var(--text);
-        outline: none;
-      }
-
-      .proxy-form button {
-        padding: 10px 12px;
-        border: none;
-        border-radius: 10px;
-        background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .ai-panel {
-        margin-top: 24px;
-        padding: 24px;
-      }
-
-      .ai-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
+        border-radius: 16px;
+        padding: 14px;
         margin-bottom: 18px;
       }
 
-      .ai-title {
-        font-size: 1.3rem;
+      .proxy-label {
+        display: block;
         font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--muted);
       }
 
-      .ai-badge {
-        padding: 7px 12px;
-        border-radius: 999px;
-        background: rgba(59,130,246,.12);
-        border: 1px solid rgba(59,130,246,.28);
-        color: var(--text);
-        font-size: .8rem;
+      .proxy-base {
+        margin-bottom: 10px;
       }
 
-      .ai-controls {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 14px;
-      }
-
-      .ai-input {
-        flex: 1;
-        min-height: 52px;
-        padding: 14px 16px;
+      .proxy-base input {
+        width: 100%;
+        margin-top: 6px;
+        padding: 10px 12px;
+        border-radius: 10px;
         border: 1px solid var(--panel-border);
-        border-radius: 14px;
-        background: rgba(255,255,255,.03);
+        background: rgba(255,255,255,0.02);
         color: var(--text);
-        font-size: 1rem;
         outline: none;
       }
 
-      .ai-button {
+      .search-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 11px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--panel-border);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+        outline: none;
+      }
+
+      button {
         border: none;
+        border-radius: 10px;
         background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
         color: white;
-        border-radius: 14px;
-        padding: 14px 18px;
         font-weight: bold;
+        padding: 11px 14px;
         cursor: pointer;
-        box-shadow: 0 12px 24px rgba(124,92,255,.35);
       }
 
-      .ai-output {
-        background: rgba(255,255,255,.04);
-        border: 1px solid var(--panel-border);
-        border-radius: 16px;
-        padding: 16px 18px;
-        min-height: 72px;
-        color: var(--muted);
-        line-height: 1.6;
+      .result {
+        position: relative;
+        background: rgba(0,0,0,0.18);
       }
 
-      @media (max-width: 960px) {
-        .main-layout { grid-template-columns: 1fr; }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: white;
       }
 
-      @media (max-width: 680px) {
-        .topbar { flex-wrap: wrap; justify-content: center; }
-        .search-wrap { width: 100%; }
-        .quick-grid { grid-template-columns: 1fr; }
-        .stream-grid { grid-template-columns: 1fr; }
-        .ai-controls { flex-direction: column; }
+      @media (max-width: 900px) {
+        .content {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          max-height: 44vh;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="portal">
-      <header class="topbar">
-        <div class="brand">
-          <div class="logo">R</div>
-          <div>Ripace40 Portal</div>
+    <div class="browser">
+      <div class="browser-topbar">
+        <div class="nav-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
         </div>
 
-        <div class="search-wrap">
-          <form class="search-form" action="https://www.google.com/search" method="get" target="_blank">
-            <input type="text" name="q" placeholder="Search the web..." aria-label="Search the web" />
-            <button class="search-btn" type="submit">Search</button>
-          </form>
-        </div>
+        <div class="browser-title">Proxy Browser</div>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
-          🌙 Dark
-        </button>
-      </header>
+        <div style="width: 120px;"></div>
+      </div>
 
-      <div class="main-layout">
-        <main>
-          <section class="panel welcome">
-            <div class="status">
-              <span class="dot"></span>
-              Online
-            </div>
-
-            <h1>Hello, World! My site is officially live.</h1>
-            <p>Welcome to my personal portal. Quick access to games, AI, media, and links.</p>
-
-            <div class="quick-grid">
-              <a class="link-card" href="https://ripace40.github.io/b/" target="_blank" rel="noreferrer">
-                <div class="card-icon">🔗</div>
-                <div>
-                  <h3>My Link</h3>
-                  <p>Open my GitHub Pages project.</p>
-                </div>
-                <div class="meta">
-                  <span>Portal</span>
-                  <span class="badge">Open</span>
-                </div>
-              </a>
-
-              <a class="link-card" href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" rel="noreferrer">
-                <div class="card-icon">🎮</div>
-                <div>
-                  <h3>GeForce NOW</h3>
-                  <p>Cloud gaming access and instant play.</p>
-                </div>
-                <div class="meta">
-                  <span>Gaming</span>
-                  <span class="badge">Play</span>
-                </div>
-              </a>
-
-              <a class="link-card" href="https://chat.openai.com/" target="_blank" rel="noreferrer">
-                <div class="card-icon">🤖</div>
-                <div>
-                  <h3>ChatGPT</h3>
-                  <p>AI assistant for prompts, ideas, and help.</p>
-                </div>
-                <div class="meta">
-                  <span>AI</span>
-                  <span class="badge">Ask</span>
-                </div>
-              </a>
-
-              <a class="link-card" href="https://www.youtube.com/" target="_blank" rel="noreferrer">
-                <div class="card-icon">▶️</div>
-                <div>
-                  <h3>YouTube</h3>
-                  <p>Watch videos, tutorials and entertainment.</p>
-                </div>
-                <div class="meta">
-                  <span>Videos</span>
-                  <span class="badge">Watch</span>
-                </div>
-              </a>
-
-              <a class="link-card" href="https://www.croxyproxy.com/" target="_blank" rel="noreferrer">
-                <div class="card-icon">🛡️</div>
-                <div>
-                  <h3>Croxy Proxy</h3>
-                  <p>Launch a proxy for easier browsing.</p>
-                </div>
-                <div class="meta">
-                  <span>Proxy</span>
-                  <span class="badge">Open</span>
-                </div>
-              </a>
-
-              <a class="link-card" href="https://github.com/" target="_blank" rel="noreferrer">
-                <div class="card-icon">💻</div>
-                <div>
-                  <h3>GitHub</h3>
-                  <p>Code, projects, and repositories.</p>
-                </div>
-                <div class="meta">
-                  <span>Dev</span>
-                  <span class="badge">Code</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="streaming">
-              <div class="section-title">
-                <span>Streaming & Media</span>
-                <span class="badge">Live</span>
-              </div>
-
-              <div class="stream-grid">
-                <a class="stream-card netflix" href="https://www.netflix.com/" target="_blank" rel="noreferrer">Netflix</a>
-                <a class="stream-card youtube" href="https://www.youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
-                <a class="stream-card stream" href="https://www.hulu.com/" target="_blank" rel="noreferrer">Hulu</a>
-              </div>
-            </div>
-
-            <div class="panel ai-panel">
-              <div class="ai-header">
-                <div class="ai-title">Homemade AI</div>
-                <div class="ai-badge">Math • Literacy • Science</div>
-              </div>
-
-              <div class="ai-controls">
-                <input id="aiInput" class="ai-input" type="text" placeholder="Ask me something like: 12 + 8, define photosynthesis..." />
-                <button id="askAi" class="ai-button">Ask AI</button>
-              </div>
-
-              <div id="aiOutput" class="ai-output">
-                Type a question and I’ll answer it like a simple school helper.
-              </div>
-            </div>
-          </section>
-        </main>
-
+      <div class="content">
         <aside class="sidebar">
-          <div class="panel widget">
-            <div class="widget-title">Mini Clock</div>
-            <div class="clock-box">
-              <div id="clock">00:00:00</div>
-              <div id="date">Loading date...</div>
+          <div class="proxy-card">
+            <label class="proxy-label">Proxy 1 = Google</label>
+
+            <div class="proxy-base">
+              <small>Custom proxy base</small>
+              <input id="proxy1base" type="text" value="https://r.jina.ai/http://" />
+            </div>
+
+            <div class="search-row">
+              <input id="proxy1input" type="text" placeholder="Type a website or search term" />
+              <button onclick="runSearch('proxy1')">Go</button>
             </div>
           </div>
 
-          <div class="panel widget">
-            <div class="widget-title">Weather</div>
-            <div class="weather-box">
-              <div class="weather-icon">☀️</div>
-              <div>
-                <div class="weather-temp">26°C</div>
-                <div class="weather-meta">Sunny • Clear skies</div>
-              </div>
+          <div class="proxy-card">
+            <label class="proxy-label">Proxy 2 = Bing</label>
+
+            <div class="proxy-base">
+              <small>Custom proxy base</small>
+              <input id="proxy2base" type="text" value="https://r.jina.ai/http://" />
+            </div>
+
+            <div class="search-row">
+              <input id="proxy2input" type="text" placeholder="Type a website or search term" />
+              <button onclick="runSearch('proxy2')">Go</button>
             </div>
           </div>
 
-          <div class="panel widget">
-            <div class="widget-title">Daily Proxy Search</div>
-            <div class="proxy-box">
-              <form class="proxy-form" data-engine="google" onsubmit="event.preventDefault(); runProxySearch(this);">
-                <label>Proxy 1 = Google</label>
-                <input type="text" placeholder="Type a website or search term..." />
-                <button type="submit">Search</button>
-              </form>
+          <div class="proxy-card">
+            <label class="proxy-label">Proxy 3 = DuckDuckGo</label>
 
-              <form class="proxy-form" data-engine="bing" onsubmit="event.preventDefault(); runProxySearch(this);">
-                <label>Proxy 2 = Bing</label>
-                <input type="text" placeholder="Type a website or search term..." />
-                <button type="submit">Search</button>
-              </form>
+            <div class="proxy-base">
+              <small>Custom proxy base</small>
+              <input id="proxy3base" type="text" value="https://r.jina.ai/http://" />
+            </div>
 
-              <form class="proxy-form" data-engine="duckduckgo" onsubmit="event.preventDefault(); runProxySearch(this);">
-                <label>Proxy 3 = DuckDuckGo</label>
-                <input type="text" placeholder="Type a website or search term..." />
-                <button type="submit">Search</button>
-              </form>
+            <div class="search-row">
+              <input id="proxy3input" type="text" placeholder="Type a website or search term" />
+              <button onclick="runSearch('proxy3')">Go</button>
             </div>
           </div>
         </aside>
+
+        <div class="result">
+          <iframe id="resultFrame" title="Proxy result" src="https://www.google.com/"></iframe>
+        </div>
       </div>
     </div>
 
     <script>
-      const body = document.body;
-      const toggle = document.getElementById("themeToggle");
-
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "light") {
-        body.classList.add("light");
-        toggle.textContent = "☀️ Light";
-      }
-
-      toggle.addEventListener("click", () => {
-        body.classList.toggle("light");
-        const isLight = body.classList.contains("light");
-        localStorage.setItem("theme", isLight ? "light" : "dark");
-        toggle.textContent = isLight ? "☀️ Light" : "🌙 Dark";
-      });
-
       const searchEngines = {
-        google: "https://www.google.com/search?q=",
-        bing: "https://www.bing.com/search?q=",
-        duckduckgo: "https://duckduckgo.com/?q="
+        proxy1: "https://www.google.com/search?q=",
+        proxy2: "https://www.bing.com/search?q=",
+        proxy3: "https://duckduckgo.com/?q="
       };
 
       function looksLikeWebsite(value) {
         return /(?:[a-z0-9-]+\.)+[a-z]{2,}/i.test(value) || /^https?:\/\//i.test(value);
       }
 
-      function buildProxyUrl(site) {
-        const clean = site.replace(/^https?:\/\//i, "");
-        return "https://r.jina.ai/http://" + clean;
+      function buildProxyUrl(base, site) {
+        let proxyBase = (base || "").trim() || "https://r.jina.ai/http://";
+        let cleanSite = site.replace(/^https?:\/\//i, "");
+
+        if (proxyBase.includes("{{url}}")) {
+          return proxyBase.replace("{{url}}", encodeURIComponent(site));
+        }
+
+        if (proxyBase.includes("?") || proxyBase.includes("=") || proxyBase.includes("&")) {
+          return proxyBase + encodeURIComponent(site);
+        }
+
+        return proxyBase + cleanSite;
       }
 
-      function runProxySearch(form) {
-        const input = form.querySelector("input").value.trim();
-        const engine = form.dataset.engine;
+      function runSearch(proxyName) {
+        const inputId = proxyName + "input";
+        const baseId = proxyName + "base";
+        const value = document.getElementById(inputId).value.trim();
+        const proxyBase = document.getElementById(baseId).value.trim();
 
-        if (!input) {
-          alert("Please type a website or search term.");
+        if (!value) {
+          alert("Please type a website or a search term.");
           return;
         }
 
-        if (looksLikeWebsite(input)) {
-          let site = input;
+        const frame = document.getElementById("resultFrame");
+
+        if (looksLikeWebsite(value)) {
+          let site = value;
           if (!/^https?:\/\//i.test(site)) site = "https://" + site;
-          window.open(buildProxyUrl(site), "_blank");
+          frame.src = buildProxyUrl(proxyBase, site);
           return;
         }
 
-        const searchUrl = searchEngines[engine] + encodeURIComponent(input);
-        window.open(searchUrl, "_blank");
+        const searchUrl = searchEngines[proxyName] + encodeURIComponent(value);
+        frame.src = searchUrl;
       }
 
-      function updateClock() {
-        const now = new Date();
-        const clockEl = document.getElementById("clock");
-        const dateEl = document.getElementById("date");
+      // Enter key support
+      document.addEventListener("keydown", function (event) {
+        const active = document.activeElement;
 
-        const timeString = now.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit"
-        });
+        if (event.key === "Enter" && active && active.tagName === "INPUT") {
+          const id = active.id;
 
-        const dateString = now.toLocaleDateString([], {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          year: "numeric"
-        });
-
-        clockEl.textContent = timeString;
-        dateEl.textContent = dateString;
-      }
-
-      setInterval(updateClock, 1000);
-      updateClock();
-
-      const aiInput = document.getElementById("aiInput");
-      const askAi = document.getElementById("askAi");
-      const aiOutput = document.getElementById("aiOutput");
-
-      function safeEvalMathExpression(expr) {
-        const sanitized = expr.replace(/[^0-9+\-*/().%\\s]/g, "");
-        if (!sanitized.trim()) return null;
-        try {
-          return Function(`"use strict"; return (${sanitized});`)();
-        } catch {
-          return null;
-        }
-      }
-
-      function getAiReply(message) {
-        const text = message.trim();
-        if (!text) return "Please ask me a question about math, literacy, or science.";
-
-        const lower = text.toLowerCase();
-
-        if (/(\\d+.*[+\\-*/%].*\\d+|\\badd\\b|\\bsubtract\\b|\\bmultiply\\b|\\bdivide\\b|\\bmath\\b|\\bcalculate\\b|\\bsolve\\b)/.test(lower)) {
-          const match = lower.match(/(-?\\d+(\\.\\d+)?\\s*[-+*/%]\\s*-?\\d+(\\.\\d+)?)/);
-          if (match) {
-            const expr = match[0].replace(/\\s+/g, "");
-            const result = safeEvalMathExpression(expr);
-            if (result !== null && Number.isFinite(result)) {
-              return `Math answer: ${expr} = ${result}.`;
-            }
-          }
-          if (lower.includes("12 + 8") || lower.includes("12+8")) return "Math answer: 12 + 8 = 20.";
-          if (lower.includes("9 * 7") || lower.includes("9*7")) return "Math answer: 9 × 7 = 63.";
-          if (lower.includes("square root of 81") || lower.includes("sqrt 81")) return "Math answer: √81 = 9.";
-          return "Math helper: Example answers: 12 + 8 = 20, 9 × 7 = 63, √81 = 9.";
-        }
-
-        if (/literacy|reading|writing|sentence|word|synonym|antonym|grammar|noun|verb|adjective|story|poem/.test(lower)) {
-          if (lower.includes("noun")) return "A noun is a person, place, thing, or idea. Example: dog, school, freedom.";
-          if (lower.includes("verb")) return "A verb is an action word. Example: run, jump, write, think.";
-          if (lower.includes("adjective")) return "An adjective describes a noun. Example: happy, bright, quiet.";
-          if (lower.includes("sentence")) return "A sentence is a complete thought. It begins with a capital letter and usually ends with a period, question mark, or exclamation mark.";
-          if (lower.includes("synonym")) return "A synonym is a word with a similar meaning. Example: happy and joyful.";
-          if (lower.includes("antonym")) return "An antonym is a word with the opposite meaning. Example: hot and cold.";
-          return "Literacy answer: A sentence is a complete thought, nouns name things, verbs show action, and adjectives describe things.";
-        }
-
-        if (/science|plant|cell|photosynthesis|gravity|energy|atom|water cycle|earth|planet|chemical|biology|physics|chemistry/.test(lower)) {
-          if (lower.includes("photosynthesis")) return "Photosynthesis is the process plants use to make food using sunlight, water, and carbon dioxide.";
-          if (lower.includes("gravity")) return "Gravity is the force that pulls objects toward Earth and other large masses.";
-          if (lower.includes("cell")) return "A cell is the basic unit of life. All living things are made of cells.";
-          if (lower.includes("atom")) return "An atom is the smallest unit of an element. Atoms combine to form molecules.";
-          if (lower.includes("water cycle")) return "The water cycle is the movement of water through evaporation, condensation, precipitation, and collection.";
-          return "Science answer: Plants use photosynthesis to make food, gravity pulls objects down, and cells are the basic building blocks of life.";
-        }
-
-        if (lower.includes("hello") || lower.includes("hi")) return "Hello! I can help with math, literacy, and science questions.";
-        if (lower.includes("what can you do")) return "I can help with math problems, literacy questions, and basic science facts.";
-        if (lower.includes("game") || lower.includes("geforce") || lower.includes("gaming")) return "GeForce NOW is a cloud gaming service that lets you play games on supported devices.";
-        if (lower.includes("github")) return "GitHub is a platform for storing and sharing code, projects, and software development work.";
-        if (lower.includes("theme") || lower.includes("dark") || lower.includes("light")) return "Use the top-right switch to toggle between dark and light mode.";
-        if (lower.includes("youtube")) return "YouTube is a video platform for tutorials, entertainment, learning, and music.";
-        if (lower.includes("proxy")) return "A web proxy helps you access websites through another server, often for easier browsing or access.";
-
-        return "I can answer basic math, literacy, and science questions. Try asking: 'What is photosynthesis?', 'What is a noun?', or 'What is 12 + 8?'.";
-      }
-
-      askAi.addEventListener("click", () => {
-        aiOutput.textContent = getAiReply(aiInput.value);
-      });
-
-      aiInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          aiOutput.textContent = getAiReply(aiInput.value);
+          if (id === "proxy1input") runSearch("proxy1");
+          if (id === "proxy2input") runSearch("proxy2");
+          if (id === "proxy3input") runSearch("proxy3");
         }
       });
     </script>
